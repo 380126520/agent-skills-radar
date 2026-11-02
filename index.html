@@ -40,6 +40,8 @@
   .badges { display:flex; flex-wrap:wrap; gap:6px; }
   .badge { font-size:12px; color:var(--sub); background:var(--bg); border-radius:999px; padding:3px 10px; }
   .badge.lang { color:var(--accent); background:var(--accent-soft); }
+  .badge.skill { color:#0a8f5b; background:#e6f6ef; font-weight:600; }
+  .badge.lib { color:#9aa3b2; background:#eef0f4; }
   .intro { margin:0; font-size:14px; color:#333845; flex:1;
            display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
   .card-foot { display:flex; justify-content:space-between; align-items:center; }
@@ -81,6 +83,13 @@ const fmt = n => n >= 1000 ? (n/1000).toFixed(1)+'k' : String(n);
 
 const hasCJK = s => /[\u4e00-\u9fa5]/.test(s);
 const truncate = (s,n) => { s=(s||'').trim(); return s.length>n ? s.slice(0,n)+'…' : s; };
+
+// 判定是否为技能/工具类：名称/描述/话题命中关键词即标注
+const SKILL_RE = /(skill|mcp|claude|agent|plugin|extension|addon|prompt|toolset|workflow)/i;
+function isSkill(it){
+  const blob = [it.full_name, it.description||'', (it.topics||[]).join(' ')].join(' ').toLowerCase();
+  return SKILL_RE.test(blob);
+}
 
 // 内置中英映射：常见需求词 → GitHub 常用英文检索词（免翻译接口、稳定）
 const ZH_MAP = [
@@ -184,6 +193,9 @@ function renderCard(it, rank){
       <span class="rank">#${rank}</span>
     </div>
     <div class="badges">
+      ${isSkill(it)
+        ? '<span class="badge skill">🛠 技能/工具</span>'
+        : '<span class="badge lib">📦 通用库</span>'}
       <span class="badge">⭐ ${fmt(it.stargazers_count)}</span>
       <span class="badge">🍴 ${fmt(it.forks_count)}</span>
       ${it.language?`<span class="badge lang">${it.language}</span>`:''}
