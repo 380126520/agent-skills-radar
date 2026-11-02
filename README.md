@@ -75,8 +75,9 @@ python skills_radar.py
 ### 👉 https://380126520.github.io/agent-skills-radar/
 
 - 纯前端、免后端、免 Key；匿名限额 10 次/分，也可在页面填入 GitHub Token 提升到 30 次/分（仅本次内存使用，不保存）
-- 可选「仅看 star>1000」、选择展示条数；每条含 star/fork/语言、简介（英文原文截断）、一键访问
-- 常见中文词内置映射为英文检索词（如 架构图制作→architecture diagram、思维导图→mindmap）；未收录的中文请直接用英文，更准
+- 可选「仅看 star>1000」、选择展示条数；每条含 star/fork/语言、简介、一键访问
+- 简介默认显示英文原文（截断）；**填入 DeepSeek Key 可把简介批量译为中文**，并能把未收录的中文词译成英文检索词。Key 仅本次内存使用，不落盘、不提交仓库
+- 常见中文词内置映射为英文检索词（如 架构图制作→architecture diagram、思维导图→mindmap）
 
 **命令行（可选补充）：**
 

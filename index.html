@@ -66,8 +66,9 @@
     </select>
     <label class="chk"><input id="onlyHot" type="checkbox"> 仅看 star&gt;1000</label>
     <input id="token" type="password" placeholder="可选：GitHub Token（提升限额，仅本次内存使用）">
+    <input id="dskey" type="password" placeholder="可选：DeepSeek Key（中文简介，仅本次内存）">
     <button id="go">查询</button>
-    <span class="hint">匿名限额 10 次/分；填 Token 可到 30 次/分。Token 不会被保存。</span>
+    <span class="hint">匿名限额 10 次/分；填 GitHub Token 到 30 次/分。填 DeepSeek Key 可把简介译为中文。Key 只存内存，不会保存。</span>
   </div>
 
   <div id="meta" class="meta"></div>
@@ -105,6 +106,22 @@ function toEn(raw){
   return { en: raw, mapped: !hasCJK(raw) };
 }
 
+// DeepSeek 通用调用（Key 仅本次内存使用）；无 Key 返回 null
+async function dsChat(messages, jsonMode){
+  const key = $('#dskey').value.trim();
+  if(!key) return null;
+  const body = { model:'deepseek-chat', messages, temperature:0.3 };
+  if(jsonMode) body.response_format = { type:'json_object' };
+  const r = await fetch('https://api.deepseek.com/chat/completions', {
+    method:'POST',
+    headers:{'Authorization':'Bearer '+key, 'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  if(!r.ok){ const t = await r.text(); throw new Error('DeepSeek '+r.status+' '+t.slice(0,120)); }
+  const j = await r.json();
+  return j.choices[0].message.content;
+}
+
 async function search(){
   const raw = $('#kw').value.trim();
   const box = $('#result'); $('#meta').textContent='';
@@ -114,7 +131,17 @@ async function search(){
   const token = $('#token').value.trim();
   $('#go').disabled = true; box.innerHTML='<div class="empty">查询中…</div>';
 
-  const { en, mapped } = toEn(raw);
+  let { en, mapped } = toEn(raw);
+  const dsKey = $('#dskey').value.trim();
+  // 内置映射未命中的中文，有 DeepSeek Key 时先译成英文检索词
+  if(!mapped && dsKey){
+    try{
+      const t = await dsChat([
+        {role:'system',content:'把用户输入的中文需求词翻译成适合在 GitHub 搜索仓库的英文关键词短语，只输出英文短语，不要解释。'},
+        {role:'user',content:raw}], false);
+      if(t) { en = t.trim(); mapped = true; }
+    }catch(e){}
+  }
   const q = encodeURIComponent(en + ' in:name,description,topics archived:false');
   const url = `https://api.github.com/search/repositories?q=${q}&sort=stars&order=desc&per_page=${limit}`;
   const headers = { 'Accept':'application/vnd.github+json' };
@@ -133,10 +160,11 @@ async function search(){
       const tip = mapped ? '' : '（中文词未内置，请改用英文，如 architecture diagram / mindmap / slides）';
       box.innerHTML=`<div class="empty">没有匹配结果 ${tip}</div>`; return;
     }
-    const tag = mapped ? `按「${en}」搜索` : `按「${en}」搜索`;
+    const tag = `按「${en}」搜索`;
     $('#meta').textContent = `${tag} · 共 ${data.total_count} 个匹配，展示 ${items.length} 条（按 star 降序）`;
     box.innerHTML = '';
     for(let i=0;i<items.length;i++){ renderCard(items[i], i+1); }
+    if(dsKey) batchZhIntro(items);
   }catch(e){
     box.innerHTML = `<div class="err">网络请求失败：${e.message}</div>`;
   }finally{
@@ -147,6 +175,7 @@ async function search(){
 function renderCard(it, rank){
   const el = document.createElement('article');
   el.className = 'card';
+  el.dataset.fn = it.full_name;
   const pushed = it.pushed_at ? Math.floor((Date.now()-new Date(it.pushed_at))/86400000)+' 天前更新' : '';
   const intro = truncate(it.description || it.name, 160);
   el.innerHTML = `
@@ -162,6 +191,26 @@ function renderCard(it, rank){
     <p class="intro">📝 ${intro}</p>
     <div class="card-foot"><span class="muted">${pushed}</span><a class="cta" href="${it.html_url}" target="_blank" rel="noopener">访问仓库 →</a></div>`;
   $('#result').appendChild(el);
+}
+
+// 批量一次调用 DeepSeek，把英文简介译为中文并填回对应卡片；失败保留英文
+async function batchZhIntro(items){
+  const payload = items.map(it => ({ full_name:it.full_name, description:it.description||'' }));
+  try{
+    const raw = await dsChat([
+      {role:'system',content:'你是技术翻译。把每个 GitHub 仓库的英文描述压缩成一句不超过30字的简洁中文，突出用途；按给定数组顺序原样返回 JSON：{"items":[{"full_name":"...","zh":"..."}]}。无描述则 zh 留空，不要编造。'},
+      {role:'user',content:JSON.stringify(payload)}
+    ], true);
+    const obj = JSON.parse(raw);
+    const map = {};
+    (obj.items||[]).forEach(x => { if(x.zh) map[x.full_name] = x.zh; });
+    document.querySelectorAll('article.card').forEach(card => {
+      const zh = map[card.dataset.fn];
+      if(zh) card.querySelector('.intro').textContent = '📝 ' + zh;
+    });
+  }catch(e){
+    // 翻译失败保持英文简介，不影响使用
+  }
 }
 
 $('#go').addEventListener('click', search);
