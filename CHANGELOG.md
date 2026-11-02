@@ -2,6 +2,11 @@
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)（MAJOR.MINOR.PATCH）与 Keep a Changelog 规范。
 
+## [1.1.1] - 2026-11-02
+
+### 新增
+- 检索结果全量保留、按 star 降序，卡片标注类型：🛠 技能/工具（名称/话题含 skill、mcp、claude、agent、plugin 等）或 📦 通用库
+
 ## [1.1.0] - 2026-11-02
 
 ### 新增

@@ -4,7 +4,7 @@
 
 ### 每天自动精选 GitHub 上高 star、真正实用的 Agent 技能 / 工具插件
 
-![version](https://img.shields.io/badge/version-1.1.0-4f6ef7)
+![version](https://img.shields.io/badge/version-1.1.1-4f6ef7)
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB)
 ![Schedule](https://img.shields.io/badge/cron-每天%2008:50%20(CST)-4f6ef7)
 ![Cost](https://img.shields.io/badge/成本-零服务器%20·%20GitHub%20Actions-0a8f5b)
@@ -76,6 +76,7 @@ python skills_radar.py
 
 - 纯前端、免后端、免 Key；匿名限额 10 次/分，也可在页面填入 GitHub Token 提升到 30 次/分（仅本次内存使用，不保存）
 - 可选「仅看 star>1000」、选择展示条数；每条含 star/fork/语言、简介、一键访问
+- 全量保留结果并按 star 降序，每张卡片标注类型：🛠 技能/工具（名称/话题含 skill、mcp、claude、agent、plugin 等）或 📦 通用库
 - 简介默认显示英文原文（截断）；**填入 DeepSeek Key 可把简介批量译为中文**，并能把未收录的中文词译成英文检索词。Key 仅本次内存使用，不落盘、不提交仓库
 - 常见中文词内置映射为英文检索词（如 架构图制作→architecture diagram、思维导图→mindmap）
 
