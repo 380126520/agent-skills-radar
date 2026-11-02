@@ -4,7 +4,7 @@
 
 ### 每天自动精选 GitHub 上高 star、真正实用的 Agent 技能 / 工具插件
 
-![version](https://img.shields.io/badge/version-1.0.0-4f6ef7)
+![version](https://img.shields.io/badge/version-1.1.0-4f6ef7)
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB)
 ![Schedule](https://img.shields.io/badge/cron-每天%2008:50%20(CST)-4f6ef7)
 ![Cost](https://img.shields.io/badge/成本-零服务器%20·%20GitHub%20Actions-0a8f5b)
