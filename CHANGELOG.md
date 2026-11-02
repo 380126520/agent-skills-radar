@@ -7,7 +7,7 @@
 ### 新增
 - 每日自动精选高 star 的 Claude/Agent Skills 与 Agent 工具/插件：主榜 `stars>1000` + 新星观察（200~1000、近 90 天活跃）
 - 每条配中文一句话简介（免费翻译，无需 LLM Key），输出卡片式 Markdown + 自包含 HTML 美观版
-- 支持按关键字检索并按 star 排名：命令行 `python skills_radar.py --kw 关键字 --limit 20`，或在 Actions 表单填关键字手动触发
+- 支持按关键字检索并按 star 排名：网页版（GitHub Pages，输入即查）+ 命令行 `--kw`
 - 跨仓去重、过滤 awesome 清单、非归档、近期活跃优先
 
 ### 变更
