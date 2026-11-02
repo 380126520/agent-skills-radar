@@ -1,0 +1,48 @@
+{
+  "github": {
+    "min_stars": 1000,
+    "per_query": 30,
+    "max_per_topic": 8,
+    "language": "",
+    "active_days": 180,
+    "exclude_name": ["awesome"]
+  },
+  "categories": [
+    {
+      "name": "Claude / Agent Skills",
+      "queries": [
+        "claude skill",
+        "agent skills",
+        "claude code skills",
+        "skill marketplace",
+        "agent skill pack"
+      ],
+      "keywords": [
+        "claude skill", "agent skill", "skill pack", "skill marketplace",
+        "custom skill", "agent skills", "rules", "custom instructions",
+        "agent rule", "skill template", "技能", "技能包"
+      ]
+    },
+    {
+      "name": "Agent 工具 / 插件",
+      "queries": [
+        "agent plugin",
+        "claude code plugin",
+        "agent tool",
+        "agent connector",
+        "agent extension"
+      ],
+      "keywords": [
+        "agent plugin", "agent tool", "claude code plugin", "agent extension",
+        "connector", "tool integration", "agent connector", "extension",
+        "agent toolkit", "插件", "工具集"
+      ]
+    }
+  ],
+  "rising": {
+    "enabled": true,
+    "min_stars": 200,
+    "max_per_topic": 5,
+    "active_days": 90
+  }
+}
