@@ -23,6 +23,7 @@
 - 🗂 **双分类**：Claude / Agent Skills、Agent 工具 / 插件，分开成榜
 - 📝 **中文简介**：每条把英文描述自动译为中文一句话，一眼看懂是做什么的
 - 🎨 **双版式**：`reports/YYYY-MM-DD.md`（归档）+ `YYYY-MM-DD.html`（浏览器卡片版）
+- 🔎 **网页手动检索**：打开页面输入关键字，即时按 star 排名，免后端免 Key
 - 🧹 **自动去噪**：跨仓去重、过滤 awesome 清单类、非归档、近期活跃优先
 - 🔑 **免 Key 免付费**：无需 LLM API Key、无服务器、无数据库
 
@@ -45,6 +46,7 @@
 
 ```
 agent-skills-radar/
+├── index.html                # 网页手动检索（按 star 排名，GitHub Pages 访问）
 ├── skills_radar.py            # 主脚本：抓取 → 打分去噪 → 去重 → 翻译简介 → md/HTML 渲染
 ├── config.json                # 检索词、star 门槛、每类数量、排除词
 ├── requirements.txt
@@ -66,19 +68,22 @@ python skills_radar.py
 # 产出 reports/YYYY-MM-DD.md 与 .html
 ```
 
-## 🔎 按关键字检索（按 star 排名）
+## 🔎 网页手动检索（按 star 排名）
 
-除每日自动榜外，可随时指定关键字检索，结果按 star 降序：
+打开检索页面，输入关键字即时查询，结果按 star 降序排名：
+
+### 👉 https://380126520.github.io/agent-skills-radar/
+
+- 纯前端、免后端、免 Key；匿名限额 10 次/分，也可在页面填入 GitHub Token 提升到 30 次/分（仅本次内存使用，不保存）
+- 可选「仅看 star>1000」、选择展示条数；每条含 star/fork/语言、中文简介、一键访问
+- 关键字越具体越准（如 `mcp server`、`claude skill`）；通用词会命中大量无关高星库
+
+**命令行（可选补充）：**
 
 ```bash
-# 命令行：--kw 关键字，--limit 返回条数（默认 20）
 python skills_radar.py --kw "mcp" --limit 20
 # 产出 reports/search/YYYY-MM-DD_mcp.md / .html
 ```
-
-**云端手动触发**：Actions 页 `Run workflow`，在 `keyword` 框填关键字（留空则跑每日自动榜），`limit` 填条数；结果存 `reports/search/`。
-
-> 关键字越具体越准（如 `mcp server`、`claude skill`）；通用词会命中大量无关高星库。
 
 ## ⚙️ 配置（config.json）
 

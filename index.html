@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 技能检索 · 按星排名</title>
+<style>
+  :root { --bg:#f4f6fb; --card:#fff; --ink:#1f2430; --sub:#6b7280; --line:#e7eaf2;
+           --accent:#4f6ef7; --accent-soft:#eef1ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }
+  .wrap { max-width:1080px; margin:0 auto; padding:28px 18px 60px; }
+  header { background:linear-gradient(135deg,#4f6ef7,#7a5cf0); color:#fff;
+            border-radius:18px; padding:26px 28px; margin-bottom:20px; }
+  header h1 { margin:0 0 6px; font-size:22px; }
+  header p { margin:0; opacity:.9; font-size:14px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:14px;
+           padding:18px; margin-bottom:20px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .panel input[type=text] { flex:1 1 220px; padding:11px 14px; border:1px solid var(--line);
+           border-radius:10px; font-size:15px; outline:none; }
+  .panel input[type=text]:focus { border-color:var(--accent); }
+  .panel select, .panel input[type=password] { padding:11px 12px; border:1px solid var(--line);
+           border-radius:10px; font-size:14px; background:#fff; }
+  .panel input[type=password] { flex:1 1 160px; }
+  button { background:var(--accent); color:#fff; border:0; border-radius:10px;
+           padding:11px 22px; font-size:15px; font-weight:600; cursor:pointer; }
+  button:hover { filter:brightness(1.05); }
+  button:disabled { opacity:.6; cursor:not-allowed; }
+  .hint { font-size:12px; color:var(--sub); flex-basis:100%; }
+  .meta { font-size:13px; color:var(--sub); margin:4px 2px 12px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+           padding:16px; display:flex; flex-direction:column; gap:10px; }
+  .card:hover { box-shadow:0 6px 20px rgba(79,110,247,.12); }
+  .card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .name { font-weight:700; font-size:15px; color:var(--ink); text-decoration:none; word-break:break-all; }
+  .name:hover { color:var(--accent); }
+  .rank { font-size:13px; color:var(--accent); font-weight:700; }
+  .badges { display:flex; flex-wrap:wrap; gap:6px; }
+  .badge { font-size:12px; color:var(--sub); background:var(--bg); border-radius:999px; padding:3px 10px; }
+  .badge.lang { color:var(--accent); background:var(--accent-soft); }
+  .intro { margin:0; font-size:14px; color:#333845; flex:1; }
+  .card-foot { display:flex; justify-content:space-between; align-items:center; }
+  .muted { font-size:12px; color:var(--sub); }
+  .cta { font-size:13px; color:var(--accent); text-decoration:none; font-weight:600; }
+  .empty { text-align:center; color:var(--sub); padding:40px 0; }
+  .err { color:#c0392b; background:#fdecec; border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:14px; }
+  .chk { font-size:14px; color:var(--sub); display:flex; align-items:center; gap:6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🔎 Agent 技能检索</h1>
+    <p>输入关键字即时检索 GitHub，按 star 降序排名 · 纯前端 · 免后端免 Key</p>
+  </header>
+
+  <div class="panel">
+    <input id="kw" type="text" placeholder="输入关键字，如 mcp server / claude skill / rag" autofocus>
+    <select id="limit">
+      <option value="10">10 条</option>
+      <option value="20" selected>20 条</option>
+      <option value="30">30 条</option>
+    </select>
+    <label class="chk"><input id="onlyHot" type="checkbox"> 仅看 star&gt;1000</label>
+    <input id="token" type="password" placeholder="可选：GitHub Token（提升限额，仅本次内存使用）">
+    <button id="go">查询</button>
+    <span class="hint">匿名限额 10 次/分；填 Token 可到 30 次/分。Token 不会被保存。</span>
+  </div>
+
+  <div id="meta" class="meta"></div>
+  <div id="result" class="grid"></div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const fmt = n => n >= 1000 ? (n/1000).toFixed(1)+'k' : String(n);
+
+async function translateZh(text){
+  if(!text) return '';
+  try{
+    const r = await fetch('https://api.mymemory.translated.net/get?q='+encodeURIComponent(text.slice(0,220))+'&langpair=en|zh-CN');
+    const j = await r.json();
+    if(j.responseStatus===200 && j.responseData && j.responseData.translatedText) return j.responseData.translatedText;
+  }catch(e){}
+  return text;
+}
+
+async function search(){
+  const kw = $('#kw').value.trim();
+  const box = $('#result'); $('#meta').textContent='';
+  if(!kw){ box.innerHTML='<div class="empty">请先输入关键字</div>'; return; }
+  const limit = $('#limit').value;
+  const onlyHot = $('#onlyHot').checked;
+  const token = $('#token').value.trim();
+  $('#go').disabled = true; box.innerHTML='<div class="empty">查询中…</div>';
+
+  const q = encodeURIComponent(kw + ' in:name,description,topics archived:false');
+  const url = `https://api.github.com/search/repositories?q=${q}&sort=stars&order=desc&per_page=${limit}`;
+  const headers = { 'Accept':'application/vnd.github+json' };
+  if(token) headers['Authorization'] = 'Bearer ' + token;
+
+  try{
+    const resp = await fetch(url, { headers });
+    if(resp.status === 403){ box.innerHTML='<div class="err">触发 GitHub 限流（403），请稍后再试，或填入 Token 提升限额。</div>'; return; }
+    if(!resp.ok){ const t = await resp.text(); box.innerHTML=`<div class="err">查询失败 ${resp.status}：${t.slice(0,200)}</div>`; return; }
+    const data = await resp.json();
+    let items = data.items || [];
+    if(onlyHot) items = items.filter(it => it.stargazers_count > 1000);
+    items.sort((a,b)=>b.stargazers_count-a.stargazers_count);
+
+    if(!items.length){ box.innerHTML='<div class="empty">没有匹配结果</div>'; return; }
+    $('#meta').textContent = `共 ${data.total_count} 个匹配，展示 ${items.length} 条（按 star 降序）`;
+    box.innerHTML = '';
+    for(let i=0;i<items.length;i++){ await renderCard(items[i], i+1); }
+  }catch(e){
+    box.innerHTML = `<div class="err">网络请求失败：${e.message}</div>`;
+  }finally{
+    $('#go').disabled = false;
+  }
+}
+
+async function renderCard(it, rank){
+  const el = document.createElement('article');
+  el.className = 'card';
+  const pushed = it.pushed_at ? Math.floor((Date.now()-new Date(it.pushed_at))/86400000)+' 天前更新' : '';
+  el.innerHTML = `
+    <div class="card-head">
+      <a class="name" href="${it.html_url}" target="_blank" rel="noopener">${it.full_name}</a>
+      <span class="rank">#${rank}</span>
+    </div>
+    <div class="badges">
+      <span class="badge">⭐ ${fmt(it.stargazers_count)}</span>
+      <span class="badge">🍴 ${fmt(it.forks_count)}</span>
+      ${it.language?`<span class="badge lang">${it.language}</span>`:''}
+    </div>
+    <p class="intro">📝 翻译中…</p>
+    <div class="card-foot"><span class="muted">${pushed}</span><a class="cta" href="${it.html_url}" target="_blank" rel="noopener">访问仓库 →</a></div>`;
+  $('#result').appendChild(el);
+  const desc = (it.description||'').trim();
+  const zh = await translateZh(desc || it.name);
+  el.querySelector('.intro').textContent = '📝 ' + zh;
+}
+
+$('#go').addEventListener('click', search);
+$('#kw').addEventListener('keydown', e => { if(e.key==='Enter') search(); });
+</script>
+</body>
+</html>
