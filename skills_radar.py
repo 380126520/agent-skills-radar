@@ -6,6 +6,7 @@ agent-skills-radar：专门检索 GitHub 上高 star、实用的 Agent 技能 / 
 - 输出：reports/YYYY-MM-DD.md（卡片式）+ reports/YYYY-MM-DD.html（美观卡片版）
 - 简介：免费翻译接口(MyMemory)把英文描述译为中文一句话，失败回退原文
 """
+import argparse
 import html as _html
 import json
 import os
@@ -102,6 +103,32 @@ def repo_text(item: dict) -> str:
 def excluded(name: str, excludes: list[str]) -> bool:
     n = name.lower()
     return any(x in n for x in excludes)
+
+
+# ---------- 关键字检索（按 star 排名） ----------
+def search_by_keyword(kw: str, limit: int, excludes: list[str]) -> list[dict] | None:
+    """按关键字在名称/描述/topics 检索，按 star 降序返回。"""
+    q = f"{kw} in:name,description,topics archived:false"
+    params = {"q": q, "sort": "stars", "order": "desc", "per_page": limit}
+    try:
+        resp = http_get("https://api.github.com/search/repositories", params)
+        if resp.status_code == 403:
+            print("[warn] GitHub Search 限流(403)", file=sys.stderr)
+            return None
+        resp.raise_for_status()
+        rows = []
+        seen: set[str] = set()
+        for it in resp.json().get("items", []):
+            full = it["full_name"]
+            if full in seen or excluded(it["name"], excludes):
+                continue
+            seen.add(full)
+            rows.append(it)
+        rows.sort(key=lambda x: x.get("stargazers_count", 0), reverse=True)
+        return rows[:limit]
+    except Exception as e:
+        print(f"[warn] 关键字查询失败 ({kw}): {e}", file=sys.stderr)
+        return []
 
 
 # ---------- 聚合：每类多 query，本地分桶、跨类去重 ----------
@@ -315,14 +342,91 @@ def render_html(date_str: str, main: dict, rising: dict) -> str:
 </html>"""
 
 
+# ---------- 关键字检索渲染（扁平列表 · 按 star 排名） ----------
+def render_md_search(kw: str, rows: list, date_str: str) -> str:
+    lines = [f"# 关键字检索：{kw} · {date_str}", ""]
+    lines.append(f"> 按 star 降序排名 · 共 {len(rows)} 条")
+    lines.append("")
+    for i, it in enumerate(rows, 1):
+        lines.append(md_card(it, i))
+    return "\n".join(lines)
+
+
+def render_html_search(kw: str, rows: list, date_str: str) -> str:
+    body = "\n".join(html_card(it) for it in rows)
+    return f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关键字检索 {kw} · {date_str}</title>
+<style>
+  :root {{ --bg:#f4f6fb; --card:#fff; --ink:#1f2430; --sub:#6b7280; --line:#e7eaf2;
+           --accent:#4f6ef7; --accent-soft:#eef1ff; }}
+  * {{ box-sizing:border-box; }}
+  body {{ margin:0; background:var(--bg); color:var(--ink);
+         font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }}
+  .wrap {{ max-width:1080px; margin:0 auto; padding:28px 18px 60px; }}
+  header {{ background:linear-gradient(135deg,#4f6ef7,#7a5cf0); color:#fff;
+            border-radius:18px; padding:26px 28px; margin-bottom:22px; }}
+  header h1 {{ margin:0 0 6px; font-size:22px; }}
+  header p {{ margin:0; opacity:.9; font-size:14px; }}
+  .grid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:14px; }}
+  .card {{ background:var(--card); border:1px solid var(--line); border-radius:14px;
+           padding:16px 16px 14px; display:flex; flex-direction:column; gap:10px; }}
+  .card:hover {{ box-shadow:0 6px 20px rgba(79,110,247,.12); }}
+  .card-head {{ display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }}
+  .name {{ font-weight:700; font-size:15px; color:var(--ink); text-decoration:none; word-break:break-all; }}
+  .name:hover {{ color:var(--accent); }}
+  .badges {{ display:flex; flex-wrap:wrap; gap:6px; }}
+  .badge {{ font-size:12px; color:var(--sub); background:var(--bg); border-radius:999px; padding:3px 10px; }}
+  .badge.fresh {{ color:#0a8f5b; background:#e6f6ee; }}
+  .badge.lang {{ color:var(--accent); background:var(--accent-soft); }}
+  .intro {{ margin:0; font-size:14px; color:#333845; flex:1; }}
+  .card-foot {{ display:flex; justify-content:space-between; align-items:center; }}
+  .muted {{ font-size:12px; color:var(--sub); }}
+  .cta {{ font-size:13px; color:var(--accent); text-decoration:none; font-weight:600; }}
+</style>
+</head>
+<body><div class="wrap">
+  <header><h1>🔎 关键字检索：{esc(kw)}</h1>
+  <p>{date_str} · 按 star 降序 · 共 {len(rows)} 条</p></header>
+  <div class="grid">{body}
+  </div>
+</div></body></html>"""
+
+
 # ---------- 主流程 ----------
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Agent 技能雷达：自动精选 / 关键字检索")
+    parser.add_argument("--kw", default=os.environ.get("SKILL_KEYWORD", "").strip(),
+                        help="按关键字检索技能，按 star 排名；留空则跑每日自动榜")
+    parser.add_argument("--limit", type=int,
+                        default=int(os.environ.get("SKILL_LIMIT", "20") or 20),
+                        help="关键字检索返回条数，默认 20")
+    args = parser.parse_args()
+
     cfg = load_config()
     today = now_cst().strftime("%Y-%m-%d")
     REPORTS_DIR.mkdir(exist_ok=True)
 
-    main_board, rise_board = build_boards(cfg)
+    # —— 关键字检索模式（命令行 --kw 或表单 SKILL_KEYWORD）——
+    if args.kw:
+        import re as _re
+        safe = _re.sub(r"[^\w\u4e00-\u9fa5]+", "_", args.kw).strip("_") or "query"
+        rows = search_by_keyword(args.kw, args.limit, cfg["github"].get("exclude_name", []))
+        if rows is None:
+            print("✗ 查询被限流，请稍后重试或配置 GH_TOKEN", file=sys.stderr)
+            sys.exit(1)
+        search_dir = REPORTS_DIR / "search"
+        search_dir.mkdir(exist_ok=True)
+        (search_dir / f"{today}_{safe}.md").write_text(render_md_search(args.kw, rows, today), encoding="utf-8")
+        (search_dir / f"{today}_{safe}.html").write_text(render_html_search(args.kw, rows, today), encoding="utf-8")
+        print(f"✓ 关键字「{args.kw}」检索完成: reports/search/{today}_{safe}.md / .html")
+        return
 
+    # —— 默认：每日自动榜 ——
+    main_board, rise_board = build_boards(cfg)
     (REPORTS_DIR / f"{today}.md").write_text(render_md(today, main_board, rise_board), encoding="utf-8")
     (REPORTS_DIR / f"{today}.html").write_text(render_html(today, main_board, rise_board), encoding="utf-8")
     print(f"✓ 榜单已生成: reports/{today}.md / .html")

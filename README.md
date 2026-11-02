@@ -4,6 +4,7 @@
 
 ### 每天自动精选 GitHub 上高 star、真正实用的 Agent 技能 / 工具插件
 
+![version](https://img.shields.io/badge/version-1.0.0-4f6ef7)
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB)
 ![Schedule](https://img.shields.io/badge/cron-每天%2008:50%20(CST)-4f6ef7)
 ![Cost](https://img.shields.io/badge/成本-零服务器%20·%20GitHub%20Actions-0a8f5b)
@@ -59,11 +60,25 @@ agent-skills-radar/
 4. Actions 页手动 `Run workflow` 验证；之后每天北京时间 **08:50** 自动跑，结果提交到 `reports/`。
 
 ```bash
-# 本地运行
+# 本地运行（每日自动榜）
 pip install -r requirements.txt
 python skills_radar.py
 # 产出 reports/YYYY-MM-DD.md 与 .html
 ```
+
+## 🔎 按关键字检索（按 star 排名）
+
+除每日自动榜外，可随时指定关键字检索，结果按 star 降序：
+
+```bash
+# 命令行：--kw 关键字，--limit 返回条数（默认 20）
+python skills_radar.py --kw "mcp" --limit 20
+# 产出 reports/search/YYYY-MM-DD_mcp.md / .html
+```
+
+**云端手动触发**：Actions 页 `Run workflow`，在 `keyword` 框填关键字（留空则跑每日自动榜），`limit` 填条数；结果存 `reports/search/`。
+
+> 关键字越具体越准（如 `mcp server`、`claude skill`）；通用词会命中大量无关高星库。
 
 ## ⚙️ 配置（config.json）
 

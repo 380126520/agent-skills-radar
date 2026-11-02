@@ -4,7 +4,16 @@ on:
   schedule:
     # UTC 00:50 = 北京时间 08:50；GitHub Actions 定时可能有数分钟延迟
     - cron: "50 0 * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: "按关键字检索技能（留空则跑每日自动榜）"
+        required: false
+        default: ""
+      limit:
+        description: "检索返回条数（默认 20）"
+        required: false
+        default: "20"
 
 permissions:
   contents: write
@@ -27,6 +36,8 @@ jobs:
       - name: Run skills radar
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          SKILL_KEYWORD: ${{ inputs.keyword }}
+          SKILL_LIMIT: ${{ inputs.limit }}
         run: python skills_radar.py
 
       - name: Commit daily report
