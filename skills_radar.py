@@ -511,7 +511,7 @@ def render_weekly_md(st: dict, top_n: int, top_rise: int) -> str:
 
     lines = [f"# 本周技能雷达汇总 · {st['week']}（{title_range}）", ""]
     lines.append(f"> 本周共收录 **{stats['total']}** 项{prev} · 主榜 {stats['main']} · 新星 {stats['rising']} · "
-                 f"覆盖 {stats['days']} 天 · 同一仓库一周只出现一次")
+                 f"覆盖 {stats['days']} 天 · 同一仓库一周只出现一次（跨周不限）")
     lines.append("")
     lines.append("## 📊 分类分布")
     lines.append("")
@@ -611,7 +611,7 @@ def render_weekly_html(st: dict, top_n: int, top_rise: int) -> str:
 <div class="wrap">
   <header>
     <h1>📅 本周技能雷达汇总 · {st['week']}</h1>
-    <p>{title_range} · 本周收录 {stats['total']} 项{prev} · 同一仓库一周只出现一次</p>
+    <p>{title_range} · 本周收录 {stats['total']} 项{prev} · 同一仓库一周只出现一次（跨周不限）</p>
   </header>
   <div class="stats">
     <div class="stat"><b>{stats['total']}</b><span>本周收录</span></div>
@@ -694,8 +694,10 @@ def main() -> None:
         prev_total = st.get("prev_total") if st.get("week") == label else None
 
     if st.get("week") != label:
+        # 口径：排重只在「本周内」生效。跨周一律清零，上周及更早出现过的项目周一起可再次入选，
+        # 不做任何跨周排除（上周数据只用于补出上周汇总与本条 prev_total 统计）。
         st = new_state(d, prev_total)
-        print(f"✓ 进入新的一周 {label}（{week_range_text(mon, sun)}），计数已清零")
+        print(f"✓ 进入新的一周 {label}（{week_range_text(mon, sun)}），计数已清零（跨周不排重）")
 
     seen = {s["full_name"] for s in st["items"] if s.get("date") != today_str}
     # 同日重跑（含手动重触发）时只保留往日记录，今日重新生成，避免同一份日报被叠加替换成不同内容
@@ -740,7 +742,7 @@ def main() -> None:
 
     day_idx = d.weekday() + 1
     note = (f"本周（{week_range_text(mon, sun)}）第 {day_idx}/7 天 · 今日新增 {added} 项 · "
-            f"本周已累计 {len({s['full_name'] for s in st['items']})} 项（同一仓库一周只出现一次）")
+            f"本周已累计 {len({s['full_name'] for s in st['items']})} 项（同一仓库一周只出现一次，跨周不限）")
 
     (REPORTS_DIR / f"{today}.md").write_text(render_md(today, main_board, rise_board, note), encoding="utf-8")
     (REPORTS_DIR / f"{today}.html").write_text(render_html(today, main_board, rise_board, note), encoding="utf-8")
