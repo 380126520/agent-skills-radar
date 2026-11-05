@@ -1,11 +1,15 @@
 {
   "github": {
     "min_stars": 1000,
-    "per_query": 30,
+    "per_query": 50,
     "max_per_topic": 8,
     "language": "",
     "active_days": 180,
     "exclude_name": ["awesome"]
+  },
+  "weekly": {
+    "top_n": 20,
+    "top_rising": 10
   },
   "categories": [
     {

@@ -4,7 +4,7 @@
 
 ### 每天自动精选 GitHub 上高 star、真正实用的 Agent 技能 / 工具插件
 
-![version](https://img.shields.io/badge/version-1.1.1-4f6ef7)
+![version](https://img.shields.io/badge/version-1.2.0-4f6ef7)
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB)
 ![Schedule](https://img.shields.io/badge/cron-每天%2008:50%20(CST)-4f6ef7)
 ![Cost](https://img.shields.io/badge/成本-零服务器%20·%20GitHub%20Actions-0a8f5b)
@@ -16,12 +16,16 @@
 
 每天自动检索 GitHub，按 star 排序并本地关键词二次打分去噪，为你筛出 **Claude / Agent Skills** 与 **Agent 工具 / 插件** 两类高星实用项目；每条配**中文一句话简介**，同时产出卡片式 Markdown 与美观 HTML 两个版本。零服务器成本，跑在 GitHub Actions 上。
 
+**按周循环**：周一到周日为一周，同一仓库一周内只出现一次；每天只推本周没出现过的项目，周日自动出**本周汇总榜**。
+
 ## ✨ 亮点
 
 - 🥇 **高星主榜**：`stars > 1000`，成熟项目精选，不做水军清单
 - 🌱 **新星观察**：`200~1000 star` 且近 90 天活跃，提前发现潜力新项目
 - 🗂 **双分类**：Claude / Agent Skills、Agent 工具 / 插件，分开成榜
 - 📝 **中文简介**：每条把英文描述自动译为中文一句话，一眼看懂是做什么的
+- 📅 **周内不重复**：一周七天各推一批新项目，已上过榜的不再重复出现
+- 🏆 **周汇总榜**：每周日额外输出 `reports/week/YYYY-Www.md/.html`，含本周收录统计、分类分布、Top 20 与本周新星 Top 10
 - 🎨 **双版式**：`reports/YYYY-MM-DD.md`（归档）+ `YYYY-MM-DD.html`（浏览器卡片版）
 - 🔎 **网页手动检索**：打开页面输入关键字，即时按 star 排名，免后端免 Key
 - 🧹 **自动去噪**：跨仓去重、过滤 awesome 清单类、非归档、近期活跃优先
@@ -47,12 +51,24 @@
 ```
 agent-skills-radar/
 ├── index.html                # 网页手动检索（按 star 排名，GitHub Pages 访问）
-├── skills_radar.py            # 主脚本：抓取 → 打分去噪 → 去重 → 翻译简介 → md/HTML 渲染
-├── config.json                # 检索词、star 门槛、每类数量、排除词
+├── skills_radar.py            # 主脚本：抓取 → 打分去噪 → 周内排重 → 翻译简介 → md/HTML 渲染
+├── config.json                # 检索词、star 门槛、每类数量、排除词、周榜参数
 ├── requirements.txt
-├── reports/                   # 每日榜单 YYYY-MM-DD.md / .html
+├── reports/
+│   ├── YYYY-MM-DD.md / .html  # 每日榜单
+│   ├── _week_state.json       # 本周已展示清单（跨天排重、周报数据来源）
+│   └── week/YYYY-Www.md/.html # 每周汇总榜（周日自动生成）
 └── .github/workflows/skills.yml   # 每天定时（北京时间 08:50）
 ```
+
+## 📅 周循环规则（重点）
+
+1. **一周 = 周一到周日**（北京时间）。程序把本周已上榜的仓库记进 `reports/_week_state.json`。
+2. **每天只推新的**：生成当天榜单时，先剔除本周已出现过的仓库，再从剩余候选里取 star 最高的若干条，因此同一仓库一周内**不会出现第二次**。
+3. **周日出汇总**：每周日跑完当天榜单后，额外生成 `reports/week/YYYY-Www.md` 与 `.html`，内容为本周收录总数、分类分布、本周 Top 20（按 star）、本周新星 Top 10。
+4. **周一自动清零**：进入新的一周时计数重置，上周项目可以再次参选；若上周末因故没出周报，会在周一**自动补生成**。
+
+> 由于每天排重，越接近周末「本周没上过榜」的新项目越少，当天条目可能少于上限，属正常现象。
 
 ## 🚀 快速开始（Fork 部署）
 
@@ -65,8 +81,13 @@ agent-skills-radar/
 # 本地运行（每日自动榜）
 pip install -r requirements.txt
 python skills_radar.py
-# 产出 reports/YYYY-MM-DD.md 与 .html
+# 产出 reports/YYYY-MM-DD.md 与 .html；周日额外产出 reports/week/YYYY-Www.md
+
+# 强制补出本周汇总
+FORCE_WEEKLY=1 python skills_radar.py
 ```
+
+> Actions 手动触发时，「weekly」填 `1` 也可强制生成周汇总。
 
 ## 🔎 网页手动检索（按 star 排名）
 
@@ -98,6 +119,8 @@ python skills_radar.py --kw "mcp" --limit 20
 | `github.active_days` | 多少天内有更新算「近期活跃」并优先排序 |
 | `categories[].queries` | 该类别在 GitHub 搜索用的主词（扩大召回） |
 | `categories[].keywords` | 本地二次打分词，命中才收录（收紧/去噪） |
+| `weekly.top_n` | 周汇总榜展示条数，默认 `20` |
+| `weekly.top_rising` | 周汇总里新星榜条数，默认 `10` |
 | `rising.min_stars / active_days / max_per_topic` | 新星观察门槛、活跃窗口、条数 |
 
 > 想调整方向：改 `queries`（扩大召回）和 `keywords`（收紧匹配）即可，无需改代码。
