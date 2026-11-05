@@ -14,6 +14,10 @@ on:
         description: "检索返回条数（默认 20）"
         required: false
         default: "20"
+      weekly:
+        description: "强制生成本周汇总榜（1=是，0=否；周日会自动生成）"
+        required: false
+        default: "0"
 
 permissions:
   contents: write
@@ -38,6 +42,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SKILL_KEYWORD: ${{ inputs.keyword }}
           SKILL_LIMIT: ${{ inputs.limit }}
+          FORCE_WEEKLY: ${{ inputs.weekly }}
         run: python skills_radar.py
 
       - name: Commit daily report
