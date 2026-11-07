@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 技能雷达 · 2026-11-07</title>
+<style>
+  :root { --bg:#f4f6fb; --card:#fff; --ink:#1f2430; --sub:#6b7280; --line:#e7eaf2;
+           --accent:#4f6ef7; --accent-soft:#eef1ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }
+  .wrap { max-width:1080px; margin:0 auto; padding:28px 18px 60px; }
+  header { background:linear-gradient(135deg,#4f6ef7,#7a5cf0); color:#fff;
+            border-radius:18px; padding:26px 28px; margin-bottom:22px; }
+  header h1 { margin:0 0 6px; font-size:22px; }
+  header p { margin:0; opacity:.9; font-size:14px; }
+  h2 { font-size:17px; margin:26px 0 12px; padding-left:10px; border-left:4px solid var(--accent); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+           padding:16px 16px 14px; display:flex; flex-direction:column; gap:10px;
+           transition:box-shadow .15s; }
+  .card:hover { box-shadow:0 6px 20px rgba(79,110,247,.12); }
+  .card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .name { font-weight:700; font-size:15px; color:var(--ink); text-decoration:none; word-break:break-all; }
+  .name:hover { color:var(--accent); }
+  .badges { display:flex; flex-wrap:wrap; gap:6px; }
+  .badge { font-size:12px; color:var(--sub); background:var(--bg);
+            border-radius:999px; padding:3px 10px; }
+  .badge.fresh { color:#0a8f5b; background:#e6f6ee; }
+  .badge.lang { color:var(--accent); background:var(--accent-soft); }
+  .intro { margin:0; font-size:14px; color:#333845; flex:1; }
+  .card-foot { display:flex; justify-content:space-between; align-items:center; }
+  .muted { font-size:12px; color:var(--sub); }
+  .cta { font-size:13px; color:var(--accent); text-decoration:none; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎯 Agent 技能 · 高星精选雷达</h1>
+    <p>2026-11-07 · 主榜 stars&gt;1000 · Claude/Agent Skills 与 Agent 工具/插件 · 每日自动更新</p>
+    <p>本周（11-02 ~ 11-08）第 6/7 天 · 今日新增 21 项 · 本周已累计 72 项（同一仓库一周只出现一次，跨周不限）</p>
+  </header>
+  
+    <section>
+      <h2>Claude / Agent Skills</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/googleworkspace/cli">googleworkspace/cli</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 32.1k</span>
+        <span class="badge">🍴 2.0k</span>
+        <span class="badge lang">Rust</span>
+      </div>
+      <p class="intro">📝 Google Workspace CLI —一个用于云端硬盘、Gmail、日历、工作表、文档、聊天、管理员等的命令行工具。从Google Discovery服务动态生成。包括人工智能代理技能。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 4 天前</span>
+        <a class="cta" href="https://github.com/googleworkspace/cli">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/alirezarezvani/claude-skills">alirezarezvani/claude-skills</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 29.4k</span>
+        <span class="badge">🍴 4.1k</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 410 Claude Code技能和代理技能和插件（ 120多个代理、自定义命令、410多个技能、可定制的参考、脚本） ，适用于Claude Code、Codex、Gemini CLI、Cursor和其他8个编码代理—工程、营销、</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/alirezarezvani/claude-skills">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/op7418/guizang-ppt-skill">op7418/guizang-ppt-skill</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 29.4k</span>
+        <span class="badge">🍴 2.0k</span>
+        <span class="badge lang">HTML</span>
+      </div>
+      <p class="intro">📝 用于生成精美HTML幻灯片的AI代理技能：编辑杂志和瑞士布局、图像提示、社交封面和WebGL/低功耗演示运行时。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 7 天前</span>
+        <a class="cta" href="https://github.com/op7418/guizang-ppt-skill">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/NVIDIA/SkillSpector">NVIDIA/SkillSpector</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 24.7k</span>
+        <span class="badge">🍴 2.1k</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 人工智能代理技能的安全扫描仪。在安装之前，检测Claude Code、Codex和MCP技能中的漏洞、恶意模式、安全风险、提示注入、数据泄露和供应链风险。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/NVIDIA/SkillSpector">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/KKKKhazix/khazix-skills">KKKKhazix/khazix-skills</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 22.0k</span>
+        <span class="badge">🍴 2.3k</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 数字生命卡兹克开源的 AI技能合集|代理技能： leader （领导者帮你定义目标）、整洁癖洁的怪胎、hv-analysis、khazix-writer等— Claude Code、Codex和40多个代理</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 3 天前</span>
+        <a class="cta" href="https://github.com/KKKKhazix/khazix-skills">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/liyupi/ai-guide">liyupi/ai-guide</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 21.9k</span>
+        <span class="badge">🍴 2.4k</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 程序员鱼皮的 AI 资源大全 + Vibe编零基础教程码，分享 OpenClaw 保姆级教程、大模型玩法（ DeepSeek/GPT/Gemini/Claude/GLM ）、最新 AI资讯、提示提示词大全、AI 知识百科（ Agent技能/RAG/MCP/A2A ）、 AI 编程教程（线束工程）、 AI 工具用法（光标/Claude代码/</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 16 天前</span>
+        <a class="cta" href="https://github.com/liyupi/ai-guide">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/citrolabs/ego-lite">citrolabs/ego-lite</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 21.9k</span>
+        <span class="badge">🍴 1.2k</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 人工智能代理运行浏览器自动化的最快浏览器，旨在与您的人工智能代理（如Codex或Claude Code ）共享您登录的浏览器状态，而不会打扰您。零成本，零配置。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/citrolabs/ego-lite">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nidhinjs/prompt-master">nidhinjs/prompt-master</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 15.6k</span>
+        <span class="badge">🍴 1.8k</span>
+        <span class="badge lang">—</span>
+      </div>
+      <p class="intro">📝 为任何AI工具编写准确提示的Claude技能。零代币或积分浪费。完整的上下文和记忆保留</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 15 天前</span>
+        <a class="cta" href="https://github.com/nidhinjs/prompt-master">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Agent 工具 / 插件</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/aipoch/open-science">aipoch/open-science</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 5.5k</span>
+        <span class="badge">🍴 552</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 用于科学研究和代理工作流程的开源AI研究工作台。本地优先，模型无关的桌面应用程序，具有可扩展的技能， MCP工具和连接器， Python/R执行和可追溯的工件</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/aipoch/open-science">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/omdsh-dev/DSH-better-sidebar">omdsh-dev/DSH-better-sidebar</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 5.0k</span>
+        <span class="badge">🍴 473</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 开放的侧边栏底座支持三方拓展注册新侧边栏页面。内置文件渲染编辑//终端/Git侧边对话/子代理页面｜打开侧边栏基础，支持第三方扩展注册新的侧边栏页面。内置文件渲染/编辑、终端、侧聊、Git和子代理页面。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 2 天前</span>
+        <a class="cta" href="https://github.com/omdsh-dev/DSH-better-sidebar">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/liustack/modlens">liustack/modlens</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 4.8k</span>
+        <span class="badge">🍴 151</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 DeepSeek线束的第一个视觉插件，以及每个纯文本编码代理的视觉桥接。粘贴图像，获取结构化JSON证据（ OCR、布局、语义）。| 全网最强 DeepSeek线束外挂视觉插件，为 DeepSeek、 GLM 等</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 14 天前</span>
+        <a class="cta" href="https://github.com/liustack/modlens">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nateherkai/scroll-craft">nateherkai/scroll-craft</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 4.7k</span>
+        <span class="badge">🍴 655</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 构建高级、沉浸式、滚动式网站的代理技能。与Codex、Claude Code和其他编码代理合作。也可作为Claude Code插件使用。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 37 天前</span>
+        <a class="cta" href="https://github.com/nateherkai/scroll-craft">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/bowenliang123/dsh-context">bowenliang123/dsh-context</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 4.5k</span>
+        <span class="badge">🍴 187</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 用于上下文洞察和管理的最佳DeepSeek线束插件，具有上下文仪表板/浏览器/侧边栏和上下文命令，用于上下文统计、组合、细分、演进详细信息、代理团队、underst</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/bowenliang123/dsh-context">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/jupyterlab/jupyter-ai">jupyterlab/jupyter-ai</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 4.4k</span>
+        <span class="badge">🍴 541</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 将AI代理连接到JupyterLab中的计算笔记本的开源扩展。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/jupyterlab/jupyter-ai">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nowork-studio/notfair-plugin">nowork-studio/notfair-plugin</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 4.1k</span>
+        <span class="badge">🍴 519</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 人工智能代理的开源SEO、GEO和营销技能。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/nowork-studio/notfair-plugin">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/remorses/playwriter">remorses/playwriter</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 4.1k</span>
+        <span class="badge">🍴 195</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 Chrome扩展和CLI ，让代理控制您的浏览器。在有状态的沙盒中运行剧作家片段。可用作CLI或MCP</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/remorses/playwriter">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+  
+
+    <section>
+      <h2>Agent 工具 / 插件</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nicobailon/pi-interactive-shell">nicobailon/pi-interactive-shell</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 603</span>
+        <span class="badge">🍴 57</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 Pi编码代理扩展，允许Pi在可观察的叠加层中自主控制交互式CLI。完全PTY仿真，无tmux ，令牌高效。用户可以随时接管。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 10 天前</span>
+        <a class="cta" href="https://github.com/nicobailon/pi-interactive-shell">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nicobailon/pi-intercom">nicobailon/pi-intercom</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 573</span>
+        <span class="badge">🍴 116</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 PI编码代理的会话间通信扩展</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 8 天前</span>
+        <a class="cta" href="https://github.com/nicobailon/pi-intercom">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/google-agentic-commerce/a2a-x402">google-agentic-commerce/a2a-x402</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 572</span>
+        <span class="badge">🍴 158</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 A2A x402扩展将加密货币支付引入代理对代理(A2A)协议，使代理能够通过链上支付将其服务货币化。此扩展恢复了HTTP 402 “付款请求”的精神</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 94 天前</span>
+        <a class="cta" href="https://github.com/google-agentic-commerce/a2a-x402">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/ogulcancelik/pi-extensions">ogulcancelik/pi-extensions</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 570</span>
+        <span class="badge">🍴 60</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 基于终端的编码代理pi的扩展</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 3 天前</span>
+        <a class="cta" href="https://github.com/ogulcancelik/pi-extensions">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/vincentkoc/tokenjuice">vincentkoc/tokenjuice</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 533</span>
+        <span class="badge">🍴 52</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 🧃 代币重量损失。针对终端密集型代理工作流程的精益输出压缩。可用作本机CLI工具或流行编码和代理框架的扩展。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/vincentkoc/tokenjuice">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+</div>
+</body>
+</html>
