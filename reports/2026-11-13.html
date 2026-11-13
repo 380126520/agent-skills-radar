@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 技能雷达 · 2026-11-13</title>
+<style>
+  :root { --bg:#f4f6fb; --card:#fff; --ink:#1f2430; --sub:#6b7280; --line:#e7eaf2;
+           --accent:#4f6ef7; --accent-soft:#eef1ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }
+  .wrap { max-width:1080px; margin:0 auto; padding:28px 18px 60px; }
+  header { background:linear-gradient(135deg,#4f6ef7,#7a5cf0); color:#fff;
+            border-radius:18px; padding:26px 28px; margin-bottom:22px; }
+  header h1 { margin:0 0 6px; font-size:22px; }
+  header p { margin:0; opacity:.9; font-size:14px; }
+  h2 { font-size:17px; margin:26px 0 12px; padding-left:10px; border-left:4px solid var(--accent); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+           padding:16px 16px 14px; display:flex; flex-direction:column; gap:10px;
+           transition:box-shadow .15s; }
+  .card:hover { box-shadow:0 6px 20px rgba(79,110,247,.12); }
+  .card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .name { font-weight:700; font-size:15px; color:var(--ink); text-decoration:none; word-break:break-all; }
+  .name:hover { color:var(--accent); }
+  .badges { display:flex; flex-wrap:wrap; gap:6px; }
+  .badge { font-size:12px; color:var(--sub); background:var(--bg);
+            border-radius:999px; padding:3px 10px; }
+  .badge.fresh { color:#0a8f5b; background:#e6f6ee; }
+  .badge.lang { color:var(--accent); background:var(--accent-soft); }
+  .intro { margin:0; font-size:14px; color:#333845; flex:1; }
+  .card-foot { display:flex; justify-content:space-between; align-items:center; }
+  .muted { font-size:12px; color:var(--sub); }
+  .cta { font-size:13px; color:var(--accent); text-decoration:none; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎯 Agent 技能 · 高星精选雷达</h1>
+    <p>2026-11-13 · 主榜 stars&gt;1000 · Claude/Agent Skills 与 Agent 工具/插件 · 每日自动更新</p>
+    <p>本周（11-09 ~ 11-15）第 5/7 天 · 今日新增 21 项 · 本周已累计 88 项（同一仓库一周只出现一次，跨周不限）</p>
+  </header>
+  
+    <section>
+      <h2>Claude / Agent Skills</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/obsidianmd/obsidian-skills">obsidianmd/obsidian-skills</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 52.1k</span>
+        <span class="badge">🍴 3.7k</span>
+        <span class="badge lang">Shell</span>
+      </div>
+      <p class="intro">📝 适用于 Obsidian 的代理技能。教您的代理使用 Obsidian CLI 和开放格式，包括 Markdown、Bases、JSON Canvas。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/obsidianmd/obsidian-skills">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/NanmiCoder/cc-haha">NanmiCoder/cc-haha</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 15.4k</span>
+        <span class="badge">🍴 8.6k</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 本地优先的跨平台 Claude Code / AI Agent 桌面工作台：多 Agent 协作、Git Worktree、代码 Diff、技能市场、多模型、Computer Use、桌面宠物；支持微信、飞书、钉钉及 H5 等远程访问。| 本地优先的 Claude Code/AI Agent 桌面工作台：多 Agent 协作、Git 工作区、代码差异、技能市场、</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/NanmiCoder/cc-haha">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/heydamir/unslop">heydamir/unslop</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 15.3k</span>
+        <span class="badge">🍴 870</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 一种 Claude 技能，可将采用氛围编码、看起来像 AI 的 UI 转换为经过设计的界面</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 4 天前</span>
+        <a class="cta" href="https://github.com/heydamir/unslop">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/genspark-ai/genoffice">genspark-ai/genoffice</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 12.3k</span>
+        <span class="badge">🍴 1.7k</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 免费的开源 AI Office 套件：包含文档、电子表格、幻灯片、PDF、Markdown 和 HTML 编辑器，内置 AI 代理，以及 `genoffice` CLI 和代理技能，让 Claude Code、Codex 和 Cursor 能够创建和编辑真正的 .docx/.xl 文件。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/genspark-ai/genoffice">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/anbeime/skill">anbeime/skill</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 9.5k</span>
+        <span class="badge">🍴 843</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 收录最全、更新最快的技能Skills商店：精选原创技能包（涵盖文档处理、内容创作、编程开发、机器学习、自动化工作流），全部打包好可直接安装使用！同时自动抓取 GitHub 上万个 Skills 项目，按分类、更新时间、Star 数量整理。最全面且更新最频繁的 AI Agent 技能库，提供精心挑选的技能包，涵盖</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/anbeime/skill">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/zenstory-ai/oh-story-claudecode">zenstory-ai/oh-story-claudecode</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 8.6k</span>
+        <span class="badge">🍴 1.2k</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 AI 写网文全流程技能包：扫榜选材、拆解爆款、大纲细纲、长篇设定与伏笔追踪、短篇反转、去 AI 味与封面生成，适配 Claude Code/Codex/Antigravity/OpenCode 等｜用于撰写中文网文的 Agent 技能包</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/zenstory-ai/oh-story-claudecode">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/davepoon/buildwithclaude">davepoon/buildwithclaude</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 3.7k</span>
+        <span class="badge">🍴 718</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 一个统一的中心，用于查找 Claude 技能、代理、命令、钩子、插件和市场集合，以扩展 Claude Code、Claude Desktop、Agent SDK 和 OpenClaw</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/davepoon/buildwithclaude">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/FrancyJGLisboa/agent-skills-platform">FrancyJGLisboa/agent-skills-platform</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 2.4k</span>
+        <span class="badge">🍴 266</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 通过用户定义的市场构建经过测试的代理技能并管理其生命周期：证据、发现、更新、回滚、隔离和17个平台的发布。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 58 天前</span>
+        <a class="cta" href="https://github.com/FrancyJGLisboa/agent-skills-platform">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Agent 工具 / 插件</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/omdsh-dev/DSH-better-sidebar">omdsh-dev/DSH-better-sidebar</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 5.1k</span>
+        <span class="badge">🍴 489</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 开放的侧边栏底座，支持第三方扩展注册新侧边栏页面。内置文件渲染编辑/终端/侧边对话/Git/子代理页面 ｜ 开放的侧边栏底座，支持第三方扩展注册新侧边栏页面。内置文件渲染/编辑、终端、侧边对话、Git 和子代理页面。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/omdsh-dev/DSH-better-sidebar">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/remorses/playwriter">remorses/playwriter</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 4.1k</span>
+        <span class="badge">🍴 197</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 Chrome 扩展程序和 CLI，让代理控制您的浏览器。在有状态沙盒中运行 Playwright 代码片段。可作为 CLI 或 MCP 使用</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/remorses/playwriter">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/giancarloerra/SocratiCode">giancarloerra/SocratiCode</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 3.4k</span>
+        <span class="badge">🍴 427</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 企业级（4000 多万行代码）代码库智能，零设置，本地和私有插件/技能/扩展或 MCP：混合语义搜索、多语言依赖关系图、符号级影响分析和调用流、交互式 HTML</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/giancarloerra/SocratiCode">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/Project-N-E-K-O/N.E.K.O">Project-N-E-K-O/N.E.K.O</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 3.2k</span>
+        <span class="badge">🍴 367</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 开源的伙伴 Agent，以及培养它们的社区：实时语音和视觉、长期记忆、Live2D/3D 头像、游戏伙伴、社交拜访和插件市场。🐱开源的伙伴 Agent，和一个人与猫娘共同生活的社区。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/Project-N-E-K-O/N.E.K.O">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/NanmiCoder/dsh-agent-teams">NanmiCoder/dsh-agent-teams</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 2.9k</span>
+        <span class="badge">🍴 244</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 DeepSeek Harness 的 Agent Teams 多智能体协作插件，支持多个 AI Agent 组成团队，协同完成复杂任务，实现任务分配、并行执行、成员通信与团队协作。DeepSeek Harness 的 AgentTeams 插件</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/NanmiCoder/dsh-agent-teams">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/liguobao/ds-harness-remote">liguobao/ds-harness-remote</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 2.7k</span>
+        <span class="badge">🍴 205</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 基于 DeepSeek Harness 插件机制构建的远程访问方案，通过低延迟、端到端加密的 P2P 网络，支持使用 PC、移动端和 Web 随时访问本地设备上的 DSH、CodeX、Cursor、Claude Code 等工作区。（基于 DeepSeek Harness 插件构建的低延迟、端到端加密 P2P 解决方案，支持使用 PC、移动端</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/liguobao/ds-harness-remote">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/NVIDIA/NeMo-Agent-Toolkit">NVIDIA/NeMo-Agent-Toolkit</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 2.7k</span>
+        <span class="badge">🍴 830</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 NVIDIA NeMo Agent 工具包是一个开源库，用于高效地连接和优化 AI 代理团队。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/NVIDIA/NeMo-Agent-Toolkit">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/langfengQ/verl-agent">langfengQ/verl-agent</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 2.4k</span>
+        <span class="badge">🍴 242</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 verl-agent 是 veRL 的一个扩展，旨在通过强化学习 (RL) 来训练大语言模型 (LLM)/视觉语言模型 (VLM) 智能体。verl-agent 也是论文《用于大语言模型智能体训练的组内组策略优化》（Group-in-Group Policy Optimization for LLM Agent Training）的官方代码。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 156 天前</span>
+        <a class="cta" href="https://github.com/langfengQ/verl-agent">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+  
+
+    <section>
+      <h2>Agent 工具 / 插件</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nicobailon/pi-intercom">nicobailon/pi-intercom</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 627</span>
+        <span class="badge">🍴 116</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 用于pi编码代理的会话间通信扩展</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 14 天前</span>
+        <a class="cta" href="https://github.com/nicobailon/pi-intercom">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/ogulcancelik/pi-extensions">ogulcancelik/pi-extensions</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 574</span>
+        <span class="badge">🍴 61</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 pi 的扩展，基于终端的编码代理</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 9 天前</span>
+        <a class="cta" href="https://github.com/ogulcancelik/pi-extensions">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/google-agentic-commerce/a2a-x402">google-agentic-commerce/a2a-x402</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 572</span>
+        <span class="badge">🍴 159</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 A2A x402扩展将加密货币支付引入代理到代理（A2A）协议，使代理能够通过链上支付实现其服务的货币化。此扩展重现了HTTP 402“付款请求”的精神。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/google-agentic-commerce/a2a-x402">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/vincentkoc/tokenjuice">vincentkoc/tokenjuice</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 543</span>
+        <span class="badge">🍴 54</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 🧃 减少Token用量。针对终端密集型代理工作流的精简输出压缩。可用作原生 CLI 工具，或作为主流编码和代理框架的扩展。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/vincentkoc/tokenjuice">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/anomalyco/browse">anomalyco/browse</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 529</span>
+        <span class="badge">🍴 38</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 让您的 AI 代理使用您的真实浏览器：MCP 服务器和 Chromium 扩展程序</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 0 天前</span>
+        <a class="cta" href="https://github.com/anomalyco/browse">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+</div>
+</body>
+</html>
