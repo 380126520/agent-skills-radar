@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent 技能雷达 · 2026-11-20</title>
+<style>
+  :root { --bg:#f4f6fb; --card:#fff; --ink:#1f2430; --sub:#6b7280; --line:#e7eaf2;
+           --accent:#4f6ef7; --accent-soft:#eef1ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; }
+  .wrap { max-width:1080px; margin:0 auto; padding:28px 18px 60px; }
+  header { background:linear-gradient(135deg,#4f6ef7,#7a5cf0); color:#fff;
+            border-radius:18px; padding:26px 28px; margin-bottom:22px; }
+  header h1 { margin:0 0 6px; font-size:22px; }
+  header p { margin:0; opacity:.9; font-size:14px; }
+  h2 { font-size:17px; margin:26px 0 12px; padding-left:10px; border-left:4px solid var(--accent); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+           padding:16px 16px 14px; display:flex; flex-direction:column; gap:10px;
+           transition:box-shadow .15s; }
+  .card:hover { box-shadow:0 6px 20px rgba(79,110,247,.12); }
+  .card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .name { font-weight:700; font-size:15px; color:var(--ink); text-decoration:none; word-break:break-all; }
+  .name:hover { color:var(--accent); }
+  .badges { display:flex; flex-wrap:wrap; gap:6px; }
+  .badge { font-size:12px; color:var(--sub); background:var(--bg);
+            border-radius:999px; padding:3px 10px; }
+  .badge.fresh { color:#0a8f5b; background:#e6f6ee; }
+  .badge.lang { color:var(--accent); background:var(--accent-soft); }
+  .intro { margin:0; font-size:14px; color:#333845; flex:1; }
+  .card-foot { display:flex; justify-content:space-between; align-items:center; }
+  .muted { font-size:12px; color:var(--sub); }
+  .cta { font-size:13px; color:var(--accent); text-decoration:none; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎯 Agent 技能 · 高星精选雷达</h1>
+    <p>2026-11-20 · 主榜 stars&gt;1000 · Claude/Agent Skills 与 Agent 工具/插件 · 每日自动更新</p>
+    <p>本周（11-16 ~ 11-22）第 5/7 天 · 今日新增 14 项 · 本周已累计 107 项（同一仓库一周只出现一次，跨周不限）</p>
+  </header>
+  
+    <section>
+      <h2>Claude / Agent Skills</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/FrancyJGLisboa/agent-skills-platform">FrancyJGLisboa/agent-skills-platform</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 2.4k</span>
+        <span class="badge">🍴 266</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 通过用户定义的市场构建经过测试的代理技能并管理其生命周期：证据、发现、更新、回滚、隔离和17个平台的发布。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 65 天前</span>
+        <a class="cta" href="https://github.com/FrancyJGLisboa/agent-skills-platform">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Agent 工具 / 插件</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/langfengQ/verl-agent">langfengQ/verl-agent</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 2.5k</span>
+        <span class="badge">🍴 245</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 verl-agent 是 veRL 的一个扩展，旨在通过强化学习 (RL) 来训练大语言模型 (LLM)/视觉语言模型 (VLM) 智能体。verl-agent 也是论文《用于大语言模型智能体训练的组内组策略优化》的官方代码。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 163 天前</span>
+        <a class="cta" href="https://github.com/langfengQ/verl-agent">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/OpenOSINT/OpenOSINT">OpenOSINT/OpenOSINT</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 1.9k</span>
+        <span class="badge">🍴 303</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 开源 OSINT 代理：支持自然语言聊天的 21 款公开源代码工具、一个 MCP 服务器和一个 Claude Code 插件。默认情况下为被动模式，无需密钥即可启动。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 4 天前</span>
+        <a class="cta" href="https://github.com/OpenOSINT/OpenOSINT">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/abundantbeing/hermes-browser-extension">abundantbeing/hermes-browser-extension</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 1.9k</span>
+        <span class="badge">🍴 177</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 Hermes Agent 的浏览器原生侧边面板——将 Web 上下文连接到您的本地 Hermes 运行时。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/abundantbeing/hermes-browser-extension">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nicobailon/pi-web-access">nicobailon/pi-web-access</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 1.8k</span>
+        <span class="badge">🍴 335</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 适用于 Pi 编码代理的网页搜索和内容提取扩展程序</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/nicobailon/pi-web-access">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nicobailon/pi-mcp-adapter">nicobailon/pi-mcp-adapter</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 1.7k</span>
+        <span class="badge">🍴 394</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 适用于 Pi 代码代理的代币高效 MCP 适配器</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 2 天前</span>
+        <a class="cta" href="https://github.com/nicobailon/pi-mcp-adapter">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/six2dez/burp-ai-agent">six2dez/burp-ai-agent</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 1.6k</span>
+        <span class="badge">🍴 236</span>
+        <span class="badge lang">Kotlin</span>
+      </div>
+      <p class="intro">📝 Burp Suite扩展程序，增加了内置MCP工具、AI辅助分析、隐私控制、被动和主动扫描等功能</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 29 天前</span>
+        <a class="cta" href="https://github.com/six2dez/burp-ai-agent">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/fim-ai/fim-one">fim-ai/fim-one</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 1.6k</span>
+        <span class="badge">🍴 182</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 面向全球 × 中国企业的源代码开放代理平台——通过一个代理核心连接所有系统。自托管，支持任何大语言模型。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/fim-ai/fim-one">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/ray-lothian/UserAgent-Switcher">ray-lothian/UserAgent-Switcher</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 1.5k</span>
+        <span class="badge">🍴 202</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 一款高度可配置的用户代理欺骗浏览器扩展程序</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/ray-lothian/UserAgent-Switcher">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+  
+
+    <section>
+      <h2>Agent 工具 / 插件</h2>
+      <div class="grid">
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/nicobailon/pi-powerline-footer">nicobailon/pi-powerline-footer</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 478</span>
+        <span class="badge">🍴 132</span>
+        <span class="badge lang">TypeScript</span>
+      </div>
+      <p class="intro">📝 适用于 Pi Coding Agent 的 Powerline 风格状态栏扩展</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 21 天前</span>
+        <a class="cta" href="https://github.com/nicobailon/pi-powerline-footer">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/HazAT/pi-config">HazAT/pi-config</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 459</span>
+        <span class="badge">🍴 42</span>
+        <span class="badge lang">Python</span>
+      </div>
+      <p class="intro">📝 我的个人 PI 编码代理配置 - 技能和扩展</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 86 天前</span>
+        <a class="cta" href="https://github.com/HazAT/pi-config">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/sebattfg/ZeroScript-Free">sebattfg/ZeroScript-Free</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 445</span>
+        <span class="badge">🍴 70</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 ZeroScript Free：将 ChatGPT、DeepSeek、Gemini、Kimi、GLM、Qwen、Arena 或 Meta AI 变成 Roblox Studio 智能体。浏览器扩展 + 本地桥接。阅读/编辑脚本、运行 Luau、生成资源，所有操作均可通过聊天完成。强大的代理功能</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 56 天前</span>
+        <a class="cta" href="https://github.com/sebattfg/ZeroScript-Free">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/NotASithLord/peerd">NotASithLord/peerd</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 425</span>
+        <span class="badge">🍴 48</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 首个原生于浏览器的 AI 代理工具。一款浏览器扩展程序，可在您已在使用的环境中运行完整的代理循环：它会驱动您的标签页，启动沙盒计算（JS 笔记本、WASM Linux VM、客户端应用程序），</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 1 天前</span>
+        <a class="cta" href="https://github.com/NotASithLord/peerd">访问仓库 →</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <a class="name" href="https://github.com/gemini-cli-extensions/jules">gemini-cli-extensions/jules</a>
+        <span class="badge fresh">🟢 近期活跃</span>
+      </div>
+      <div class="badges">
+        <span class="badge">⭐ 413</span>
+        <span class="badge">🍴 52</span>
+        <span class="badge lang">JavaScript</span>
+      </div>
+      <p class="intro">📝 一个 Gemini CLI 扩展，让您能够使用 Gemini CLI 编排 Jules 异步代理，以执行修复漏洞、重构和依赖项更新等编码任务。</p>
+      <div class="card-foot">
+        <span class="muted">最近更新 155 天前</span>
+        <a class="cta" href="https://github.com/gemini-cli-extensions/jules">访问仓库 →</a>
+      </div>
+    </article>
+      </div>
+    </section>
+</div>
+</body>
+</html>
